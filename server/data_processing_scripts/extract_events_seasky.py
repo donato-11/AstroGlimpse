@@ -3,6 +3,7 @@ import logging
 import requests
 
 from bs4 import BeautifulSoup
+from pathlib import Path
 
 
 logging.basicConfig(
@@ -10,7 +11,8 @@ logging.basicConfig(
     format="%(asctime)s [%(levelname)s] %(message)s"
 )
 
-OUT_DIR = os.path.join(os.pardir, "data")
+BASE_DIR = Path(__file__).resolve().parent
+OUT_DIR = BASE_DIR.parent / "data"
 BASE_URL = "http://www.seasky.org/astronomy/"
 YEAR_LIST = ["2025", "2026", "2027", "2028", "2029", "2030"]
 
@@ -42,7 +44,6 @@ def save_html(content: str, year: str) -> None:
     """Saves the events HTML content in events_html/file_name.html."""
     os.makedirs(OUT_DIR, exist_ok=True)
     path = os.path.join(OUT_DIR, f"astro_events_seasky_{year}.html")
-    print(path)
     try:
         with open(path, "w", encoding="utf-8") as file:
             file.write(content)
@@ -68,9 +69,7 @@ def fetch_and_save_all_years() -> None:
 
 
 def main():
-    #fetch_and_save_all_years()
-    print(__file__)
-
+    fetch_and_save_all_years()
 
 if __name__ == "__main__":
     main()
