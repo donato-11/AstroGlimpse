@@ -10,7 +10,7 @@ logging.basicConfig(
     format="%(asctime)s [%(levelname)s] %(message)s"
 )
 
-OUT_DIR = "events_html"
+OUT_DIR = os.path.join(os.pardir, "data")
 BASE_URL = "http://www.seasky.org/astronomy/"
 YEAR_LIST = ["2025", "2026", "2027", "2028", "2029", "2030"]
 
@@ -22,7 +22,7 @@ def get_html(url: str) -> str:
         response.raise_for_status()
         return response.text
     except requests.RequestException as e:
-        logging.error("Error fetching on URL %s: %s", url, e)
+        logging.error("Error fetching on URL %s: %s - data_processing/extract_events_seasky.py", url, e)
         return ""
 
 
@@ -42,13 +42,13 @@ def save_html(content: str, year: str) -> None:
     """Saves the events HTML content in events_html/file_name.html."""
     os.makedirs(OUT_DIR, exist_ok=True)
     path = os.path.join(OUT_DIR, f"astro_events_seasky_{year}.html")
-
+    print(path)
     try:
         with open(path, "w", encoding="utf-8") as file:
             file.write(content)
-        logging.info("Events HTML saved for year %s", year)
+        logging.info("Events HTML saved for year %s - data_processing/extract_events_seasky.py", year)
     except OSError as e:
-        logging.error("Error saving HTML for year %s: %s", year, e)
+        logging.error("Error saving HTML for year %s: %s - data_processing/extract_events_seasky.py", year, e)
 
 
 def fetch_and_save_all_years() -> None:
@@ -64,11 +64,12 @@ def fetch_and_save_all_years() -> None:
         if events_html:
             save_html(events_html, year)
         else:
-            logging.warning("Events section wasn't found for %s", year)
+            logging.warning("Events section wasn't found for %s - data_processing/extract_events_seasky.py", year)
 
 
 def main():
-    fetch_and_save_all_years()
+    #fetch_and_save_all_years()
+    print(__file__)
 
 
 if __name__ == "__main__":

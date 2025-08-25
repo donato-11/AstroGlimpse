@@ -12,10 +12,8 @@ logging.basicConfig(
 
 
 YEAR_LIST = ["2025", "2026", "2027", "2028", "2029", "2030"]
-HTML_DIR = "events_html"
-OUT_JSON_DIR = "events_json"
-os.makedirs(OUT_JSON_DIR, exist_ok=True)
-
+BASE_DIR = os.path.dirname(__file__)   # carpeta donde está el script
+EVENTS_PATH = os.path.join("..", "data", "events_html")
 
 def parse_html_to_events(html_content: str) -> list[dict]:
     """Converts the HTML into an events list. Each event is appended as a dictionary."""
@@ -44,19 +42,22 @@ def parse_html_to_events(html_content: str) -> list[dict]:
 
 def load_html(year: str) -> str:
     """Loads HTML of given year."""
-    path = os.path.join(HTML_DIR, f"astro_events_seasky_{year}.html")
+    path = os.path.join(EVENTS_PATH, f"astro_events_seasky_{year}.html")
+    print(path)
     try:
         with open(path, "r", encoding="utf-8", errors="replace") as file:
             return file.read()
     except FileNotFoundError:
-        logging.error("HTML file not found for %s", year)
+        logging.error("HTML file not found for %s- in server/data_processing/parse_html_events.py", year)
     except OSError as e:
         logging.error("Error reading HTML for %s: %s", year, e)
 
     return ""
 
 def main():
-    pass
+    html = load_html("2025")
+    events_dict = parse_html_to_events(html)
+    print(events_dict)
 
 
 if __name__ == "__main__":
