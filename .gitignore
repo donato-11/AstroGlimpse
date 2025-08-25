@@ -1,0 +1,39 @@
+*.env
+
+node_modules/
+notas/
+
+pendientes.txt
+
+# Python
+venv/
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+.vscode/
+*.code-workspace
+
+# System config files
+.DS_Store
+Thumbs.db
+
+# Frontend build
+dist/
+build/
+
+# Python build
+*.egg-info/
+.eggs/
+*.egg
+
+# Caches
+.cache/
+.mypy_cache/
+.pytest_cache/
+
+# Logs and temporary files
+*.log
+*.tmp
+*.swp
