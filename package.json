@@ -2,7 +2,7 @@
     "name": "astroglimpse-app",
     "version": "1.0.0",
     "scripts": {
-      "client": "npm run dev --prefix client",
+      "client": "npm run dev --prefix client/app",
       "server": "npm start --prefix server",
       "start": "concurrently \"npm run client\" \"npm run server\""
     },
