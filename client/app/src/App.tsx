@@ -1,5 +1,4 @@
 import { DayTile } from './components/DayTile'
-import './App.css'
 
 function App() {
 
