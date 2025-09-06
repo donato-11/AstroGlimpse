@@ -1,6 +1,6 @@
 import {Calendar} from "./components/Calendar"
-import { StarBackground } from "./components/StarBackground"
-import { StarBackground2 } from "./components/StarBackground"
+import { ShootingStars } from "./components/ui/shooting-stars"
+import { StarsBackground } from "./components/ui/star-background"
 
 function App() {
 
@@ -12,9 +12,9 @@ function App() {
 
   return (
     <>
-      <div className={"relative min-h-screen text-white"}>
-        <img src="/tile-best-2.png" alt="Fondo de galaxia" className="fixed inset-0 w-[100px] h-[100px] object-cover" />
-        <StarBackground2 />
+      <div className={"relative min-h-screen text-white"}> 
+        <StarsBackground/>
+        <ShootingStars/>
         <div>
           <div className="p-6">
             <Calendar

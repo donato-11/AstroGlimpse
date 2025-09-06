@@ -1,5 +1,6 @@
 import type { FC } from "react"
 import { DayTile } from "./DayTile"
+import { CometCard } from "./ui/comet-card"
 
 interface Event {
   date: string // formato: "YYYY-MM-DD"
@@ -40,34 +41,36 @@ export const Calendar: FC<CalendarProps> = ({ year, month, events = [], onDayCli
     }
 
     tiles.push(
-      <DayTile
-        key={i}
-        day={isValidDay ? dayNum : 0}
-        eventImage={eventData?.image}
-        eventAlt={eventData?.alt}
-        isToday={
-          isValidDay &&
-          dayNum === today.getDate() &&
-          month === today.getMonth() &&
-          year === today.getFullYear()
-        }
-        isDisabled={!isValidDay}
-        onClick={() => isValidDay && onDayClick?.(dateString)}
-      />
+      <CometCard className="flex items-center justify-center">
+        <DayTile
+          key={i}
+          day={isValidDay ? dayNum : 0}
+          eventImage={eventData?.image}
+          eventAlt={eventData?.alt}
+          isToday={
+            isValidDay &&
+            dayNum === today.getDate() &&
+            month === today.getMonth() &&
+            year === today.getFullYear()
+          }
+          isDisabled={!isValidDay}
+          onClick={() => isValidDay && onDayClick?.(dateString)}
+        />
+      </CometCard>
     )
   }
 
   return (
     <div className="w-full max-w-4xl mx-auto">
       {/* encabezado del mes */}
-      <div className="flex justify-between items-center mb-4">
-        <h2 className="text-xl font-bold text-gray-900 dark:text-gray-100">
+      <div className="flex justify-between items-center mb-4 z-50">
+        <h2 className="text-xl font-bold text-white">
           {new Date(year, month).toLocaleString("default", { month: "long", year: "numeric" })}
         </h2>
       </div>
 
       {/* días de la semana */}
-      <div className="grid grid-cols-7 text-center text-sm font-medium text-gray-600 dark:text-gray-300 mb-2 w-[100%]">
+      <div className="grid grid-cols-7 text-center text-sm font-medium text-white mb-2 w-[100%]">
         {["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"].map(d => (
           <div key={d}>{d}</div>
         ))}
