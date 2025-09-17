@@ -1,11 +1,10 @@
 "use client";
-import React, { useRef, useState } from "react";
+import React, { useRef} from "react";
 import {
   motion,
   useMotionValue,
   useSpring,
   useTransform,
-  useMotionTemplate,
 } from "motion/react";
 import { cn } from "@/lib/utils";
 
@@ -50,13 +49,6 @@ export const CometCard = ({
     [`${translateDepth}px`, `-${translateDepth}px`],
   );
 
-  const glareX = useTransform(mouseXSpring, [-0.5, 0.5], [0, 100]);
-  const glareY = useTransform(mouseYSpring, [-0.5, 0.5], [0, 100]);
-
-  const glareBackground = useMotionTemplate`radial-gradient(circle at ${glareX}% ${glareY}%, rgba(255, 255, 255, 0.8) 10%, rgba(255, 255, 255, 0.75) 20%, rgba(255, 255, 255, 0.2) 100%)`;
-
-  const [glareVisible, setGlareVisible] = useState(false);
-
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
     if (!ref.current) return;
 
@@ -73,13 +65,11 @@ export const CometCard = ({
 
     x.set(xPct);
     y.set(yPct);
-    setGlareVisible(true);
   };
 
   const handleMouseLeave = () => {
     x.set(0);
     y.set(0);
-    setGlareVisible(false);
   };
 
   return (
@@ -93,26 +83,16 @@ export const CometCard = ({
           rotateY,
           translateX,
           translateY,
-          boxShadow:
-            "rgba(0, 0, 0, 0.01) 0px 520px 146px 0px, rgba(0, 0, 0, 0.04) 0px 333px 133px 0px, rgba(0, 0, 0, 0.26) 0px 83px 83px 0px, rgba(0, 0, 0, 0.29) 0px 21px 46px 0px",
         }}
-        initial={{ scale: 1, z: 0 }}
+        initial={{ scale: 1}}
         whileHover={{
           scale: 1.05,
-          z: 50,
           transition: { duration: 0.2 },
         }}
-        className="relative rounded-2xl"
+        className="relative"
       >
         {children}
-        <motion.div
-          className="pointer-events-none absolute inset-0 z-50 h-full w-full rounded-[16px] mix-blend-overlay"
-          style={{
-            background: glareBackground,
-            opacity: glareVisible? 0 : 0,
-          }}
-          transition={{ duration: 0.2 }}
-        />
+        
       </motion.div>
     </div>
   );

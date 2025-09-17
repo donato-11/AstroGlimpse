@@ -5,13 +5,31 @@ import { StarsBackground } from "./components/ui/star-background"
 function App() {
 
   const events = [
-    { date: "2025-09-10", image: "/chrome-star.png", alt: "Evento 1" },
-    { date: "2025-09-15", image: "/chrome-star.png", alt: "Evento 2" },
-    { date: "2025-09-23", image: "/chrome-star.png", alt: "Evento 3" },
+    { date: "2025-09-10", image: "/chrome-star.png"},
+    { date: "2025-09-15", image: "/chrome-star.png"},
+    { date: "2025-09-25", image: "/chrome-star.png"},
   ]
 
   return (
     <>
+      <svg width="0" height="0">
+        <filter id="glass">
+          <feTurbulence
+            type="turbulence"
+            baseFrequency="0.02 0.05"
+            numOctaves="2"
+            result="turb"
+          />
+          <feDisplacementMap
+            in="SourceGraphic"
+            in2="turb"
+            scale="20"
+            xChannelSelector="R"
+            yChannelSelector="G"
+          />
+        </filter>
+      </svg>
+
       <div className={"relative min-h-screen text-white"}> 
         <StarsBackground/>
         <ShootingStars/>

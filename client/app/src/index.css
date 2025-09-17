@@ -67,4 +67,9 @@
   }
 }
 
+.liquidGlassEffect {
+  backdrop-filter: url(#glass);
+  background-color: rgba(10, 10, 10, 0.3);
+}
+
 

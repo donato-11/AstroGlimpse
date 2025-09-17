@@ -4,7 +4,6 @@ import { cn } from "@/lib/utils"
 interface DayTileProps {
   day: number
   eventImage?: string   // URL de la imagen (opcional)
-  eventAlt?: string     // texto alternativo accesible
   isToday?: boolean     // marca si es el día actual
   isDisabled?: boolean  // por ejemplo días de otro mes
   onClick?: () => void  // acción al hacer click
@@ -13,46 +12,48 @@ interface DayTileProps {
 export const DayTile: FC<DayTileProps> = ({
   day,
   eventImage,
-  eventAlt = "event icon",
   isToday = false,
   isDisabled = false,
   onClick,
 }) => {
   return (
-    <button
-      onClick={onClick}
-      disabled={isDisabled}
-      style={{
-        backgroundImage: 'url("/tile-border-test.png")', 
-        backgroundSize: "100% 102%",
-        backgroundPosition: "center",
-        backgroundRepeat: "no-repeat",
-        objectFit: "fill",
-      }}
-      className={cn(
-        "relative flex flex-col items-center justify-center w-20 h-20 p-3 transition-all",
-        // glass effect
-        // hover / focus states
-        "hover:shadow-[0_0_25px_rgba(255,255,255,0.1)]", // inner glow
-        // state variations
-        isToday && "shadow-[0_0_25px_rgba(255,255,255,0.5)]",
-        isDisabled && "opacity-10 hover:shadow-none"
-      )}
-    >
-      <span
+      <button
+        onClick={onClick}
+        disabled={isDisabled}
+        style={{
+          backgroundImage: 'url("/tile.png")', 
+          backgroundSize: "102% 102%",
+          backgroundPosition: "center",
+          backgroundRepeat: "no-repeat",
+        }}
         className={cn(
-          "text-lg font-light tracking-wide text-white drop-shadow-md",
+          "relative flex flex-col items-center justify-center w-20 h-20 rounded-xl",
+          // glass effect
+          "liquidGlassEffect shadow-[inset_0_0_15px_rgba(255,255,255,0.)]",
+          // hover / focus states
+          "hover:shadow-[0_0_25px_rgba(255,255,255,0.15)]",
+          // state variations
+          isToday && "shadow-[0_0_20px_rgba(255,255,255,0.4)]",
+          isDisabled && "opacity-0 hover:shadow-none"
         )}
       >
-        {day}
-      </span>
-      {eventImage && (
-        <img
-          src={eventImage}
-          alt={eventAlt}
-          className="w-8 h-8 mt-1 object-contain drop-shadow-md"
-        />
-      )}
-    </button>
+
+        <span
+          className={cn(
+            "text-lg font-light tracking-wide text-white drop-shadow-[0_0_3px_rgba(255,255,255,0.3)]",
+          )}
+        >
+          {day}
+        </span>
+
+        {eventImage && (
+          <img
+            src={eventImage}
+            alt="Event icon"
+            className="w-8 h-8 object-contain drop-shadow-[0_0_30px_rgba(255,255,255,0)]"
+          />
+        )}
+        
+      </button>
   )
 }

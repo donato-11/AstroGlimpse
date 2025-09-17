@@ -3,14 +3,13 @@ import { DayTile } from "./DayTile"
 import { CometCard } from "./ui/comet-card"
 
 interface Event {
-  date: string // formato: "YYYY-MM-DD"
+  date: string // "YYYY-MM-DD"
   image: string
-  alt?: string
 }
 
 interface CalendarProps {
   year: number
-  month: number // 0 = Enero, 11 = Diciembre
+  month: number // 0 based
   events?: Event[]
   onDayClick?: (date: string) => void
 }
@@ -46,7 +45,6 @@ export const Calendar: FC<CalendarProps> = ({ year, month, events = [], onDayCli
           key={i}
           day={isValidDay ? dayNum : 0}
           eventImage={eventData?.image}
-          eventAlt={eventData?.alt}
           isToday={
             isValidDay &&
             dayNum === today.getDate() &&
@@ -77,7 +75,7 @@ export const Calendar: FC<CalendarProps> = ({ year, month, events = [], onDayCli
       </div>
 
       {/* tiles del mes */}
-      <div className="grid grid-cols-7 gap-2 w-[100%]">
+      <div className="grid grid-cols-7 gap-4 w-[90%]">
         {tiles}
       </div>
     </div>

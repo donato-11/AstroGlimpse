@@ -6,9 +6,7 @@ import React, {
   useCallback,
 } from "react";
 
-// Utility function to merge Tailwind CSS classes
-const cn = (...classes: (string | boolean | undefined | null)[]) =>
-  classes.filter(Boolean).join(" ");
+import {cn} from "@/lib/utils";
 
 interface StarProps {
   x: number;
@@ -28,9 +26,9 @@ interface StarBackgroundProps {
 }
 
 export const StarsBackground: React.FC<StarBackgroundProps> = ({
-  starDensity = 0.00080,
+  starDensity = 0.00090,
   allStarsTwinkle = false,
-  twinkleProbability = 0.5,
+  twinkleProbability = 0.3,
   minTwinkleSpeed = 0.3,
   maxTwinkleSpeed = 1,
   className,
@@ -120,7 +118,7 @@ export const StarsBackground: React.FC<StarBackgroundProps> = ({
 
         if (star.twinkleSpeed !== null) {
           star.opacity =
-            0.5 +
+            0.7 +
             Math.abs(Math.sin((Date.now() * 0.001) / star.twinkleSpeed) * 0.5);
         }
       });
