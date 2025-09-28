@@ -1,5 +1,5 @@
 import type { FC } from "react"
-import { DayTile } from "./DayTile"
+import { DayTile } from "@/components/DayTile/DayTile"
 import { CometCard } from "@/components/ui/comet-card"
 
 interface Event {
