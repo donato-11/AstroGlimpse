@@ -1,3 +1,48 @@
+# AstroGlimpse (Client)
+
+Frontend of **AstroGlimpse Client** 
+This directory contains the **web client** built with **React + TypeScript + Vite**.
+
+---
+
+## 📦 Tech Stack
+- **React 18 + TypeScript**
+- **Vite** (fast development with HMR)
+- **TailwindCSS** (styling)
+- **shadcn/ui** (UI components)
+- **Three.js** (3D visualizations)
+- **Postgres + Express** (backend, see `/server` folder)
+
+---
+
+## Installation & Usage
+
+Clone the repository:
+
+```bash
+git clone https://github.com/yourusername/astoglimpse.git
+cd astoglimpse/client/app
+```
+
+Install dependencies:
+npm install
+
+
+Run in development mode:
+npm run dev
+
+
+Build for production:
+npm run build
+
+
+Preview the production build:
+npm run preview
+
+
+
+
+
 # React + TypeScript + Vite
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.

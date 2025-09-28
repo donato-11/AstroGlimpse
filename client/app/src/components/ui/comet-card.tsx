@@ -8,11 +8,13 @@ import {
 } from "motion/react";
 import { cn } from "@/lib/utils";
 
+// CometCard component with 3D rotation and translation effects on mouse movement.
+
 export const CometCard = ({
-  rotateDepth = 15,
-  translateDepth = 7,
+  rotateDepth = 15, // Controls the depth of 3D rotation effect on mouse movement.
+  translateDepth = 7, // Controls the depth of translation effect on mouse movement.
   className,
-  children,
+  children, //The content to be rendered inside the card
 }: {
   rotateDepth?: number;
   translateDepth?: number;

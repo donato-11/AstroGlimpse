@@ -3,10 +3,10 @@ import { cn } from "@/lib/utils"
 
 interface DayTileProps {
   day: number
-  eventImage?: string   // URL de la imagen (opcional)
-  isToday?: boolean     // marca si es el día actual
-  isDisabled?: boolean  // por ejemplo días de otro mes
-  onClick?: () => void  // acción al hacer click
+  eventImage?: string   // Image URL for the event icon
+  isToday?: boolean     // True if this tile represents today
+  isDisabled?: boolean  // True if this tile is not a valid day (empty tile)
+  onClick?: () => void
 }
 
 export const DayTile: FC<DayTileProps> = ({
@@ -22,17 +22,15 @@ export const DayTile: FC<DayTileProps> = ({
         disabled={isDisabled}
         style={{
           backgroundImage: 'url("/tile.png")', 
-          backgroundSize: "102% 102%",
+          backgroundSize: "102% 102%", // Somehow increasing this gives the background image a 3d effect
           backgroundPosition: "center",
           backgroundRepeat: "no-repeat",
         }}
         className={cn(
           "relative flex flex-col items-center justify-center w-20 h-20 rounded-xl",
-          // glass effect
-          "liquidGlassEffect shadow-[inset_0_0_15px_rgba(255,255,255,0.)]",
-          // hover / focus states
+          "liquidGlassEffect",
           "hover:shadow-[0_0_25px_rgba(255,255,255,0.15)]",
-          // state variations
+          // State variations
           isToday && "shadow-[0_0_20px_rgba(255,255,255,0.4)]",
           isDisabled && "opacity-0 hover:shadow-none"
         )}
@@ -40,7 +38,9 @@ export const DayTile: FC<DayTileProps> = ({
 
         <span
           className={cn(
-            "text-lg font-light tracking-wide text-white drop-shadow-[0_0_3px_rgba(255,255,255,0.3)]",
+            "text-lg font-light tracking-wide text-white ",
+            //"drop-shadow-[0_0_13px_rgba(202,213,226,1)]",
+            "drop-shadow-[0_0_13px_rgba(255,255,255,0.5)]"
           )}
         >
           {day}
@@ -50,7 +50,7 @@ export const DayTile: FC<DayTileProps> = ({
           <img
             src={eventImage}
             alt="Event icon"
-            className="w-8 h-8 object-contain drop-shadow-[0_0_30px_rgba(255,255,255,0)]"
+            className="w-8 h-8 object-contain"
           />
         )}
         

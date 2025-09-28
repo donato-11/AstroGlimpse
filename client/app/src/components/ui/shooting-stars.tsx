@@ -50,12 +50,12 @@ const getRandomStartPoint = () => {
 };
 
 export const ShootingStars: React.FC<ShootingStarsProps> = ({
-  minSpeed = 10,
-  maxSpeed = 30,
-  minDelay = 7000,
-  maxDelay = 10000,
-  starColor = "#FFFFFF",
-  trailColor = "#FFFFFF",
+  minSpeed = 10, // Minimum speed of the shooting stars
+  maxSpeed = 30, // Maximum speed of the shooting stars
+  minDelay = 7000, // Minimum delay between shooting stars, in milliseconds
+  maxDelay = 10000, // Maximum delay between shooting stars, in milliseconds
+  starColor = "#FFFFFF", // Color of the shooting star (end of the gradient)
+  trailColor = "#FFFFFF", // Color of the star's trail (start of the gradient)
   starWidth = 10,
   starHeight = 1,
   className,

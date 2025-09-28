@@ -26,11 +26,11 @@ interface StarBackgroundProps {
 }
 
 export const StarsBackground: React.FC<StarBackgroundProps> = ({
-  starDensity = 0.00090,
-  allStarsTwinkle = false,
-  twinkleProbability = 0.3,
-  minTwinkleSpeed = 0.3,
-  maxTwinkleSpeed = 1,
+  starDensity = 0.00090, // Determines the number of stars per pixel area.
+  allStarsTwinkle = false, // If true, all stars will twinkle; otherwise, twinkling is based on twinkleProbability.
+  twinkleProbability = 0.3, // 0-1
+  minTwinkleSpeed = 0.3, // In seconds
+  maxTwinkleSpeed = 1, // In seconds
   className,
 }) => {
   const [stars, setStars] = useState<StarProps[]>([]);
@@ -136,7 +136,7 @@ export const StarsBackground: React.FC<StarBackgroundProps> = ({
   return (
     <canvas
       ref={canvasRef}
-      className={cn("h-full w-full absolute inset-0 bg-black", className)}
+      className={cn("h-full w-full absolute inset-0 bg-black -z-10", className)}
     />
   );
 };
