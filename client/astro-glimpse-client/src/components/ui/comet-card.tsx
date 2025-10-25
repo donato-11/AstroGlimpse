@@ -1,0 +1,101 @@
+"use client";
+import React, { useRef} from "react";
+import {
+  motion,
+  useMotionValue,
+  useSpring,
+  useTransform,
+} from "motion/react";
+import { cn } from "@/lib/utils";
+
+// CometCard component with 3D rotation and translation effects on mouse movement.
+
+export const CometCard = ({
+  rotateDepth = 15, // Controls the depth of 3D rotation effect on mouse movement.
+  translateDepth = 7, // Controls the depth of translation effect on mouse movement.
+  className,
+  children, //The content to be rendered inside the card
+}: {
+  rotateDepth?: number;
+  translateDepth?: number;
+  className?: string;
+  children: React.ReactNode;
+}) => {
+  const ref = useRef<HTMLDivElement>(null);
+
+  const x = useMotionValue(0);
+  const y = useMotionValue(0);
+
+  const mouseXSpring = useSpring(x);
+  const mouseYSpring = useSpring(y);
+
+  const rotateX = useTransform(
+    mouseYSpring,
+    [-0.5, 0.5],
+    [`-${rotateDepth}deg`, `${rotateDepth}deg`],
+  );
+  const rotateY = useTransform(
+    mouseXSpring,
+    [-0.5, 0.5],
+    [`${rotateDepth}deg`, `-${rotateDepth}deg`],
+  );
+
+  const translateX = useTransform(
+    mouseXSpring,
+    [-0.5, 0.5],
+    [`-${translateDepth}px`, `${translateDepth}px`],
+  );
+  const translateY = useTransform(
+    mouseYSpring,
+    [-0.5, 0.5],
+    [`${translateDepth}px`, `-${translateDepth}px`],
+  );
+
+  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    if (!ref.current) return;
+
+    const rect = ref.current.getBoundingClientRect();
+
+    const width = rect.width;
+    const height = rect.height;
+
+    const mouseX = e.clientX - rect.left;
+    const mouseY = e.clientY - rect.top;
+
+    const xPct = mouseX / width - 0.5;
+    const yPct = mouseY / height - 0.5;
+
+    x.set(xPct);
+    y.set(yPct);
+  };
+
+  const handleMouseLeave = () => {
+    x.set(0);
+    y.set(0);
+  };
+
+  return (
+    <div className={cn("perspective-distant transform-3d", className)}>
+      <motion.div
+        ref={ref}
+        onMouseMove={handleMouseMove}
+        onMouseLeave={handleMouseLeave}
+        style={{
+          rotateX,
+          rotateY,
+          translateX,
+          translateY,
+        }}
+        initial={{ scale: 1}}
+        whileHover={{
+          scale: 1.05,
+          transition: { duration: 0.2 },
+        }}
+        className="relative"
+      >
+        {children}
+        
+      </motion.div>
+    </div>
+  );
+};
