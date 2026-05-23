@@ -1,8 +1,8 @@
 "use client"
 
-import { ShootingStars } from "@/components/ui/shooting-stars"
-import { StarsBackground } from "@/components/ui/star-background"
-import { Calendar } from "@/components/Calendar/Calendar"
+import { ShootingStars } from "@/components/ui/ShootingStars"
+import { StarsBackground } from "@/components/ui/StarBackground"
+import { Calendar } from "@/components/Calendar"
 import { EventCard } from "@/components/EventCard"
 
 export default function Home() {

@@ -1,8 +1,10 @@
 "use client"
 
 import type { FC } from "react"
-import { DayTile } from "./DayTile"
-import { CometCard } from "../ui/comet-card"
+import { DayTile } from "@/components/tiles/DayTile"
+import { CometCard } from "@/components/ui/CometCard"
+import { MonthTile } from "@/components/tiles/MonthTile"
+import { WeekTiles } from "@/components/tiles/WeekTiles"
 
 interface Event {
   date: string // "YYYY-MM-DD"
@@ -63,35 +65,12 @@ export const Calendar: FC<CalendarProps> = ({ year, month, events = [], onDayCli
     <div className="">
       {/* Month header */}
       <div className="flex justify-start items-center mb-4 ">
-        <CometCard>
-          <h2 className="text-xl font-normal text-white capitalize liquidGlassEffect p-4 rounded-lg "
-              style={{
-                backgroundImage: 'url("/tile-horizontal-3.png")',
-                backgroundSize: "100% 102%", // Somehow increasing this gives the background image a 3d effect
-                objectFit: "cover",
-              }}
-          >
-            {new Date(year, month).toLocaleString("en-US", { month: "long", year: "numeric" })}
-          </h2>
-        </CometCard>
+        <MonthTile month={month} year={year} />
       </div>
 
       {/* Days of the week */}
       <div className="grid grid-cols-7 text-center text-sm font-normal text-white mb-2 gap-x-4 w-[100%]">
-        {["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"].map(d => (
-          <CometCard key={d}>
-            <div
-              style={{
-                backgroundImage: 'url("/tile-horizontal-2.png")',
-                backgroundSize: "100% 102%",
-                objectFit: "cover",
-              }}
-              className="liquidGlassEffect"
-            >
-              {d}
-            </div>
-          </CometCard>
-        ))}
+        <WeekTiles />
       </div>
 
       {/* Month tiles */}
