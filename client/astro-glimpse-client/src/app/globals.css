@@ -32,3 +32,7 @@ body {
   backdrop-filter: url(#glass);
   background-color: rgba(10, 10, 10, 0.3);
 }
+
+.eventCardShadow {
+  filter: drop-shadow(0 0 18px rgba(255, 255, 255, 0.15));
+}

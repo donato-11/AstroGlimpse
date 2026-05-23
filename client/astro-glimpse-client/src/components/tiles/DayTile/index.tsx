@@ -21,7 +21,7 @@ export const DayTile: FC<DayTileProps> = ({
         onClick={onClick}
         disabled={isDisabled}
         style={{
-          backgroundImage: 'url("/tile.png")', 
+          backgroundImage: 'url("/tile-day.png")', 
           backgroundSize: "102% 102%", // Somehow increasing size gives the background image lightning a 3d effect
           backgroundPosition: "center",
           backgroundRepeat: "no-repeat",
